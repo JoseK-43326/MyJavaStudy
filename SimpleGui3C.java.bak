@@ -1,0 +1,90 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class SimpleGui3C{
+	int x,y;
+	public static void main(String[] args){
+		SimpleGui3C gui = new SimpleGui3C();
+		gui.go();
+		}	
+	public void go(){
+		JFrame frame = new JFrame();	
+		JButton colorButton = new JButton("Click Me");
+		JButton labelButton = new JButton("Change Label");
+		JLabel label = new JLabel("You");
+		MyDraw myDraw = new MyDraw();
+		colorButton.addActionListener(new ActionListener(){			
+			public void actionPerformed(ActionEvent event){
+			frame.repaint();
+		
+		}
+			});
+		labelButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				label.setText("ME");
+				}
+			});
+		
+		frame.getContentPane().add(BorderLayout.SOUTH, colorButton);
+		frame.getContentPane().add(BorderLayout.CENTER, myDraw);
+		frame.getContentPane().add(BorderLayout.EAST, labelButton);
+		frame.getContentPane().add(BorderLayout.WEST, label);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(600,600);
+		frame.setVisible(true);
+		}
+ class MyDraw extends JPanel{
+	
+	public void paintComponent(Graphics g){
+		
+	  
+		Graphics2D g2d = (Graphics2D) g;
+		
+		int red = (int) (Math.random()*255);
+		int green = (int) (Math.random()*255);
+		int blue = (int) (Math.random()*255);
+		Color startColor = new Color(red, green, blue);
+		
+		red = (int) (Math.random()*255);
+		green = (int) (Math.random()*255);
+	  blue = (int) (Math.random()*255);
+		Color endColor = new Color(red, green, blue);
+		
+		GradientPaint gradient = new GradientPaint(70,70,startColor,100,100,endColor);
+		g2d.setPaint(gradient);
+		g2d.fillOval(x, y, 50, 50);
+		
+		}
+	
+	}
+	
+	}
+	
+	
+/*class MyDraw extends JPanel{
+	
+	public void paintComponent(Graphics g){
+		
+	  
+		Graphics2D g2d = (Graphics2D) g;
+		
+		int red = (int) (Math.random()*255);
+		int green = (int) (Math.random()*255);
+		int blue = (int) (Math.random()*255);
+		Color startColor = new Color(red, green, blue);
+		
+		red = (int) (Math.random()*255);
+		green = (int) (Math.random()*255);
+	  blue = (int) (Math.random()*255);
+		Color endColor = new Color(red, green, blue);
+		
+		GradientPaint gradient = new GradientPaint(70,70,startColor,100,100,endColor);
+		g2d.setPaint(gradient);
+		g2d.fillOval(70, 70, 50, 50);
+		
+		}
+	
+	}
+*/

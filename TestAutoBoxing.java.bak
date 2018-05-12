@@ -1,0 +1,17 @@
+public class TestAutoBoxing{
+	Integer i = 1;
+	int j = 2;
+	
+	public static void main(String[] args){
+		TestAutoBoxing t = new TestAutoBoxing();
+		t.go();
+		
+		}
+		
+		public void go(){
+			j = i;
+			System.out.println(j);
+			System.out.println(i);
+			}
+	
+	}

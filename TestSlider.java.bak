@@ -1,0 +1,75 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
+public class TestSlider{
+	
+	public static void main(String[] args){
+		
+		MyFrame frame = new MyFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);				
+		}
+	
+}
+
+class MyFrame extends JFrame{
+	private JPanel sliderPanel;
+	private JPanel textPanel;
+	private JTextField text;
+	public MyFrame(){
+		
+		setTitle("TestSlider");
+		setSize(300, 300);
+		setIconImage(Toolkit.getDefaultToolkit()
+		    	.getImage("E:\\java\\Image\\font.png"));
+		    	
+		textPanel = new JPanel();
+		add(textPanel, BorderLayout.SOUTH);
+		text = new JTextField(5);
+		textPanel.add(text);
+		
+		sliderPanel = new JPanel();
+		add(sliderPanel, BorderLayout.CENTER);
+		
+		JSlider tickSlider = new JSlider();
+		tickSlider.setMajorTickSpacing(20);
+		tickSlider.setMinorTickSpacing(5);
+		tickSlider.setPaintTicks(true);
+		tickSlider.setPaintLabels(true);
+		addSlider(tickSlider, "Ticks");
+				
+		JSlider labelSlider = new JSlider();
+		labelSlider.setMajorTickSpacing(20);
+		labelSlider.setMinorTickSpacing(5);
+		labelSlider.setPaintTicks(true);
+		labelSlider.setPaintLabels(true);
+		Hashtable<Integer, Component> labelTable = new Hashtable<Integer, Component>();
+		labelTabel.put(0, new JLabel("A"));
+		labelTabel.put(20, new JLabel("B"));
+		labelTabel.put(40, new JLabel("C"));
+		labelTabel.put(60, new JLabel("D"));
+		labelTabel.put(80, new JLabel("E"));
+		labelTabel.put(100, new JLabel("F"));
+		labelSlider.setLabelTable(labelTable);
+		addSlider(labelSlider, "Label Slider");
+		
+		}
+	public void addSlider(JSlider s, String label){
+		
+		JLabel textLabel = new JLabel(label);
+		sliderPanel.add(s);
+		sliderPanel.add(textLabel);
+		s.addChangeListener(new ChangeListener(){
+			
+			public void stateChanged(ChangeEvent event){
+				
+				JSlider source = (JSlider) event.getSource();
+				text.setText("" + source.getValue());
+				}
+			
+			});
+		}
+}

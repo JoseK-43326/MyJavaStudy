@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class TestPrint2{
+	
+	public static void main(String[] args){
+		String b = null;
+		BufferedReader br = new BufferedReader(
+															new InputStreamReader(System.in));
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter("E:\\java\\java_test\\log.txt",true));
+			PrintWriter pw = new PrintWriter(bw);
+			while((b = br.readLine()) != null){
+				if(b.equalsIgnoreCase("exit")) break;
+				System.out.println(b.toUpperCase());
+				pw.println("--------");
+				pw.println(b.toUpperCase());
+				pw.flush();
+				}
+		pw.println("====" + new Date() + "====");
+		pw.flush();		
+		br.close();
+		pw.close();
+		} catch (IOException ex) {
+			 ex.printStackTrace(); 
+		}
+		}
+	
+	}

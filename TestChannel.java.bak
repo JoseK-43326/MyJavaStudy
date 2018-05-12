@@ -1,0 +1,27 @@
+import java.io.*;
+import java.nio.*;
+import java.nio.channels;
+
+public class TestChannel{
+	private FileInputStream fis;
+	private FileOutputStream fos;
+	private FileChannel inChannel;
+	private FileChannel outChannel;
+	public static void main(String[] args){
+			new TestChannel().fileCopy();		
+		}	
+		
+		public void fileCopy(){
+			
+			File f = new File("E:\\java\\TestChannel.java");
+			fis = new FileInputStream(f);
+			fos = new FileOutputStream("E:\\java\\java_test\\testChannel.txt");	
+			inChannel = fis.getChannel();
+			outChannel = fos.getChannel();
+			MappedByteBuffer buf = inChannel.map(FileChannel.MapMode.READ_ONLY,
+                                     0,f.length());
+      outChannel.write(buf);                              
+		}
+	
+}
+

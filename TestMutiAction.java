@@ -1,0 +1,70 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class TestMutiAction{
+	
+	public static void main(String[] args){
+		
+		MyFrame frame = new MyFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		}
+	}
+	
+class MyFrame extends JFrame{
+	
+	public MyFrame(){
+		
+		setTitle("TestMutiAction");
+		setSize(300, 300);
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("C:\\Users\\Administrator\\Desktop\\qq.png"));
+		MyPanel panel = new MyPanel();
+		add(panel);
+		}
+	
+	}
+
+class MyPanel extends JPanel{
+	
+	public MyPanel(){
+		
+		JButton newButton = new JButton("new");
+		add(newButton);
+		JButton closeAllButton = new JButton("close all");
+		add(closeAllButton);
+		
+		ActionListener newListener = new ActionListener(){			
+			public void actionPerformed(ActionEvent event){				
+				BlankFrame frame = new BlankFrame(closeAllButton);
+				frame.setVisible(true);
+				}
+			};
+			
+		newButton.addActionListener(newListener);
+		}
+		
+}
+
+class BlankFrame extends JFrame{
+		private static int counter = 0;//静态变量的用处
+		private ActionListener closeListener;
+		public BlankFrame(JButton closeButton){
+			counter ++;
+			setTitle("frame" + counter);
+			setSize(300, 300);
+			setLocation(40 * counter , 40 * counter);
+			setIconImage(Toolkit.getDefaultToolkit()
+					.getImage("C:\\Users\\Administrator\\Desktop\\qq.png"));
+		 closeListener = new ActionListener(){
+				
+				public void actionPerformed(ActionEvent event){
+					closeButton.removeActionListener(closeListener);	
+					dispose();//释放窗口资源
+					}
+				};
+			closeButton.addActionListener(closeListener);	
+			}
+			
+		}

@@ -1,0 +1,15 @@
+
+
+import java.util.Date;
+
+public class TestDate{
+	
+	public static void main(String[] args){
+		Date today = new Date();
+		String s = String.format("%tc",today);
+		
+		System.out.println("ÈÕÆÚ£º"+ s);
+		
+		}
+	
+	}

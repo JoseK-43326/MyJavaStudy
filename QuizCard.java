@@ -1,0 +1,62 @@
+import java.util.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
+import java.io.*;
+
+
+public class QuizCard{
+	
+	public static void main(String[] args){
+		QuizCard gui = new QuizCard();
+		gui.go();		
+		}
+		
+	public void go(){
+		JFrame frame = new JFrame("QuizCard");
+		JPanel panel = new JPanel();
+		JLabel questionLabel = new JLabel("Question");		
+		JTextArea questionText = new JTextArea(6,10);
+		JLabel answerLabel = new JLabel("Answer");
+		JTextArea answerText = new JTextArea(6,10);
+		JButton nextButton = new JButton("Next Card");
+		Font bigFont = new Font("sanserif",Font.BOLD,24);
+		frame.getContentPane().add(BorderLayout.CENTER, panel);
+		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+		
+		JScrollPane qScroll = new JScrollPane(questionText);
+		qScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		qScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		JScrollPane aScroll = new JScrollPane(answerText);
+		qScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		qScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		questionText.setLineWrap(true);
+		questionText.setWrapStyleWord(true);
+		questionText.setFont(bigFont);
+		answerText.setLineWrap(true);
+		answerText.setWrapStyleWord(true);
+		answerText.setFont(bigFont);
+		
+		panel.add(questionLabel);
+		panel.add(qScroll);
+		panel.add(answerLabel);
+		panel.add(aScroll);
+		panel.add(nextButton);
+		
+		JMenuBar menuBar = new JMenuBar();
+		JMenu fileMenu = new JMenu("Flie");
+		JMenuItem saveItem = new JMenuItem("Save");
+		JMenuItem openItem = new JMenuItem("Open");
+		
+		
+		menuBar.add(fileMenu);
+		fileMenu.add(saveItem);
+		fileMenu.add(openItem);
+		frame.setJMenuBar(menuBar);
+		
+		frame.setSize(640,500);
+		frame.setVisible(true);
+		}
+	}
